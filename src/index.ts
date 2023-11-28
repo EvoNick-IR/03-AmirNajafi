@@ -3,7 +3,7 @@
 import dotenv from "dotenv";
 import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
-
+import usersController from "./users/usersContorllers";
 ///////////// imports  end////////////////////
 /*---------------------------------------------------------------------------------------*/
 ///////////// app configuration  start/////** */
@@ -25,29 +25,15 @@ app.use(express.json());
 /*---------------------------------------------------------------------------------------*/
 ///////////// middle wares  start/////////////** */
 
-const AuthMiddlware = (req: Request, res: Response, next: NextFunction) => {
-  if (req.body.role && req.body.role === "admin") next();
-  else res.status(401).send("unauthorized");
-};
 
 ///////////// middle wares  end///////////////
 /*---------------------------------------------------------------------------------------*/
 ///////////// controllers  start//////////////** */
 
-app.get("/", AuthMiddlware, (req: Request, res: Response) => {
-  res.send("hello user");
-});
-interface IuserObject {
-  name: string;
-  lName: string;
-}
-app.get("/users", AuthMiddlware, (req: Request, res: Response) => {
-  const users: IuserObject[] = [
-    { name: "mostafa", lName: "Haghani" },
-    { name: "Hoda", lName: "Ahmadi" },
-  ];
-  res.send(users);
+app.get("/", (req: Request, res: Response) => {
+  res.send("hello express.ts");
 });
 
+app.use("/users", usersController);
 ///////////// controllers  end///////////////
 /*---------------------------------------------------------------------------------------*/
