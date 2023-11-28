@@ -2,8 +2,8 @@
 
 import dotenv from "dotenv";
 import cors from "cors";
-import express, { NextFunction, Request, Response } from "express";
-import usersController from "./users/usersContorllers";
+import express, { Request, Response } from "express";
+import usersController from "./users/usersControllers";
 ///////////// imports  end////////////////////
 /*---------------------------------------------------------------------------------------*/
 ///////////// app configuration  start/////** */
@@ -23,11 +23,6 @@ app.use(express.json());
 
 ///////////// origin middle wares  end/////////
 /*---------------------------------------------------------------------------------------*/
-///////////// middle wares  start/////////////** */
-
-
-///////////// middle wares  end///////////////
-/*---------------------------------------------------------------------------------------*/
 ///////////// controllers  start//////////////** */
 
 app.get("/", (req: Request, res: Response) => {
@@ -35,5 +30,6 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/users", usersController);
+
 ///////////// controllers  end///////////////
 /*---------------------------------------------------------------------------------------*/
